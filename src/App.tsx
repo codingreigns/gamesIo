@@ -1,14 +1,15 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import Navbar from "./components/mycomponents/Navbar";
 
 function App() {
-  const availb = window.screen.availWidth;
-  const [screenWidth, setScreenWidth] = useState(availb);
+  const availbleWidth = window.screen.availWidth;
+  const [screenWidth, setScreenWidth] = useState(availbleWidth);
 
   useEffect(() => {
-    setScreenWidth(availb);
-  }, [availb]);
-  console.log(availb);
+    setScreenWidth(availbleWidth);
+  }, [availbleWidth]);
+  console.log(availbleWidth);
   return (
     <>
       <Grid
@@ -18,8 +19,8 @@ function App() {
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area={"nav"} bg={"red"}>
-          nav
+        <GridItem area={"nav"}>
+          <Navbar />
         </GridItem>
         {screenWidth > 768 ? <GridItem bg={"blue"}>aside</GridItem> : ""}
 
