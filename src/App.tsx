@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Navbar from "./components/mycomponents/Navbar";
 import GameGrid from "./components/mycomponents/GameGrid";
+import GenreList from "./components/mycomponents/GenreList";
 
 function App() {
   const availbleWidth = window.screen.availWidth;
@@ -23,7 +24,13 @@ function App() {
         <GridItem area={"nav"}>
           <Navbar />
         </GridItem>
-        {screenWidth > 768 ? <GridItem area={"aside"}>aside</GridItem> : ""}
+        {screenWidth > 768 ? (
+          <GridItem area={"aside"}>
+            <GenreList />
+          </GridItem>
+        ) : (
+          ""
+        )}
 
         <GridItem area={"main"}>
           <GameGrid />
