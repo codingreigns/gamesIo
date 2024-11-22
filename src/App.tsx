@@ -4,6 +4,7 @@ import GameGrid from "./components/mycomponents/GameGrid";
 import GenreList from "./components/mycomponents/GenreList";
 import Navbar from "./components/mycomponents/Navbar";
 import { Genre } from "./hooks/useGenres";
+import PlatformSelector from "./components/mycomponents/PlatformSelector";
 
 function App() {
   const availbleWidth = window.screen.availWidth;
@@ -42,6 +43,7 @@ function App() {
         )}
 
         <GridItem area={"main"}>
+          <PlatformSelector />
           <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>

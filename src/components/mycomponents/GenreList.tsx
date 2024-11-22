@@ -24,7 +24,7 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
             />
             <Button
               onClick={() => onSelectedGenre(genre)}
-              variant={genre.id === selectedGenre?.id ? "subtle" : "ghost"}
+              variant={genre.id === selectedGenre?.id ? "surface" : "ghost"}
             >
               {genre.name}
             </Button>
