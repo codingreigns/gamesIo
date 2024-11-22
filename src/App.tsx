@@ -32,7 +32,10 @@ function App() {
         </GridItem>
         {screenWidth >= 768 ? (
           <GridItem marginLeft={3} area={"aside"}>
-            <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
+            <GenreList
+              selectedGenre={selectedGenre}
+              onSelectedGenre={(genre) => setSelectedGenre(genre)}
+            />
           </GridItem>
         ) : (
           ""

@@ -5,9 +5,10 @@ import AppSpinner from "./AppSpinner";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre?: Genre | null;
 }
 
-const GenreList = ({ onSelectedGenre }: Props) => {
+const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data: genres, isLoading, error } = useGenres();
   if (error) return null;
   return (
@@ -21,7 +22,10 @@ const GenreList = ({ onSelectedGenre }: Props) => {
               borderRadius={8}
               src={cropImageUrl(genre.image_background)}
             />
-            <Button onClick={() => onSelectedGenre(genre)} variant={"ghost"}>
+            <Button
+              onClick={() => onSelectedGenre(genre)}
+              variant={genre.id === selectedGenre?.id ? "subtle" : "ghost"}
+            >
               {genre.name}
             </Button>
           </HStack>
