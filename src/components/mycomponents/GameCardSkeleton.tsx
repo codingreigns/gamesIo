@@ -3,7 +3,7 @@ import { Card, HStack, Skeleton } from "@chakra-ui/react";
 
 const GameCardSkeleton = () => {
   return (
-    <Card.Root>
+    <Card.Root width={"300px"} maxW="sm" overflow="hidden">
       {/* <Image src={cropImageUrl(game.background_image)} /> */}
       <Skeleton height={"200px"} />
       <Card.Body gap="2">
