@@ -20,12 +20,16 @@ function App() {
           md: `"nav nav" "aside main"`,
           lg: `"nav nav" "aside main"`,
         }}
+        templateColumns={{
+          base: "1fr",
+          lg: "200px 1fr",
+        }}
       >
         <GridItem area={"nav"}>
           <Navbar />
         </GridItem>
-        {screenWidth > 768 ? (
-          <GridItem area={"aside"}>
+        {screenWidth >= 768 ? (
+          <GridItem marginLeft={3} area={"aside"}>
             <GenreList />
           </GridItem>
         ) : (
