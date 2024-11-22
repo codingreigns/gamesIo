@@ -1,12 +1,14 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import Navbar from "./components/mycomponents/Navbar";
 import GameGrid from "./components/mycomponents/GameGrid";
 import GenreList from "./components/mycomponents/GenreList";
+import Navbar from "./components/mycomponents/Navbar";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
   const availbleWidth = window.screen.availWidth;
   const [screenWidth, setScreenWidth] = useState(availbleWidth);
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   useEffect(() => {
     setScreenWidth(availbleWidth);
@@ -30,14 +32,14 @@ function App() {
         </GridItem>
         {screenWidth >= 768 ? (
           <GridItem marginLeft={3} area={"aside"}>
-            <GenreList />
+            <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
           </GridItem>
         ) : (
           ""
         )}
 
         <GridItem area={"main"}>
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>
     </>
