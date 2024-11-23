@@ -8,8 +8,14 @@ import {
 import usePlatforms from "@/hooks/usePlatforms";
 import { BsChevronDown } from "react-icons/bs";
 import AppSpinner from "./AppSpinner";
+import { Platform } from "@/hooks/useGames";
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectedPlatform: (platform: Platform) => void;
+  selectedPlatform?: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectedPlatform, selectedPlatform }: Props) => {
   const { data: platforms, isLoading, error } = usePlatforms();
 
   if (error) return null;
@@ -17,14 +23,18 @@ const PlatformSelector = () => {
     <MenuRoot>
       <MenuTrigger asChild>
         <Button variant="surface" size="sm">
+          {selectedPlatform?.name ? selectedPlatform?.name : "Platforms"}
           <BsChevronDown />
-          Platforms
         </Button>
       </MenuTrigger>
       <MenuContent>
         {isLoading && <AppSpinner />}
         {platforms?.map((platform) => (
-          <MenuItem key={platform.id} value="">
+          <MenuItem
+            onClick={() => onSelectedPlatform(platform)}
+            key={platform.id}
+            value={platform.slug}
+          >
             {platform.name}
           </MenuItem>
         ))}
