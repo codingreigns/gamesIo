@@ -19,6 +19,7 @@ export interface Game {
 const useGames = (gameQuery: GameQuery) => {
   return useInfiniteQuery({
     queryKey: ["games", gameQuery],
+    staleTime: 24 * 60 * 60 * 1000, //24hrs
     queryFn: ({ pageParam = 1 }) =>
       apiClient
         .get<FetchResponse<Game>>("/games", {
