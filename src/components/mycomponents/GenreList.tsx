@@ -5,10 +5,10 @@ import AppSpinner from "./AppSpinner";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
-  selectedGenre?: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
+const GenreList = ({ onSelectedGenre, selectedGenreId }: Props) => {
   const { data: genres, isLoading, error } = useGenres();
   if (error) return null;
   return (
@@ -31,7 +31,7 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
                 textAlign={"left"}
                 objectFit={"cover"}
                 onClick={() => onSelectedGenre(genre)}
-                variant={genre.id === selectedGenre?.id ? "surface" : "ghost"}
+                variant={genre.id === selectedGenreId ? "surface" : "ghost"}
               >
                 {genre.name}
               </Button>
