@@ -1,5 +1,5 @@
-import { GameQuery } from "@/App";
 import apiClient, { FetchResponse } from "@/services/apiClient";
+import useGameQueryStore from "@/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 
@@ -17,7 +17,9 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (gameQuery: GameQuery) => {
+const useGames = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+
   return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     staleTime: ms("24h"),

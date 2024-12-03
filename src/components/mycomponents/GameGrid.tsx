@@ -1,4 +1,3 @@
-import { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
 import { SimpleGrid } from "@chakra-ui/react";
 import React from "react";
@@ -7,18 +6,14 @@ import AppSpinner from "./AppSpinner";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
   const {
     data: games,
     error,
     isLoading,
     hasNextPage,
     fetchNextPage,
-  } = useGames(gameQuery);
+  } = useGames();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   const fetchGamesCount =
@@ -40,8 +35,8 @@ const GameGrid = ({ gameQuery }: Props) => {
         >
           {isLoading &&
             skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
-          {games?.pages.map((page) => (
-            <React.Fragment>
+          {games?.pages.map((page, index) => (
+            <React.Fragment key={index}>
               {page.results.map((game) => (
                 <GameCard key={game.id} game={game} />
               ))}

@@ -8,19 +8,13 @@ import {
 import usePlatforms from "@/hooks/usePlatforms";
 import { BsChevronDown } from "react-icons/bs";
 import AppSpinner from "./AppSpinner";
-import { Platform } from "@/hooks/useGames";
+import useGameQueryStore from "@/store";
 
-interface Props {
-  onSelectedPlatform: (platform: Platform) => void;
-  selectedPlatformId?: number;
-}
-
-const PlatformSelector = ({
-  onSelectedPlatform,
-  selectedPlatformId,
-}: Props) => {
+const PlatformSelector = () => {
   const { data: platforms, isLoading, error } = usePlatforms();
-  const selectedPlatform = platforms?.find((p) => p.id === selectedPlatformId);
+  const setPlatformId = useGameQueryStore((s) => s.setPlatformId);
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
+  const selectedPlatform = platforms?.find((p) => p.id === platformId);
 
   if (error) return null;
   return (
@@ -35,7 +29,7 @@ const PlatformSelector = ({
         {isLoading && <AppSpinner />}
         {platforms?.map((platform) => (
           <MenuItem
-            onClick={() => onSelectedPlatform(platform)}
+            onClick={() => setPlatformId(platform.id)}
             key={platform.id}
             value={platform.slug}
           >

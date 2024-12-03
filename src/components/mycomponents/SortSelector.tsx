@@ -5,14 +5,12 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
+import useGameQueryStore from "@/store";
 import { BsChevronDown } from "react-icons/bs";
 
-interface Props {
-  onSelectSortOrder: (sortOrder: string) => void;
-  selectedSortOrder: string | null;
-}
-
-const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
+const SortSelector = () => {
+  const setSortOrder = useGameQueryStore((s) => s.setSortOrder);
+  const selectedSortOrder = useGameQueryStore((s) => s.gameQuery.sortOrder);
   const sortOrders: { value: string; label: string }[] = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -39,7 +37,7 @@ const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
           <MenuItem
             key={order.label}
             value={order.value}
-            onClick={() => onSelectSortOrder(order.value)}
+            onClick={() => setSortOrder(order.value)}
           >
             {order.label}
           </MenuItem>
