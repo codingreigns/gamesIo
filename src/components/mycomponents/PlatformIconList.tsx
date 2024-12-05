@@ -1,4 +1,4 @@
-import { Platform } from "@/hooks/useGames";
+import { Platform } from "@/entities/Platform";
 import { HStack } from "@chakra-ui/react";
 import { BsGlobe } from "react-icons/bs";
 import {
