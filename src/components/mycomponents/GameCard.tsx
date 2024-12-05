@@ -3,6 +3,7 @@ import cropImageUrl from "@/utils/cropImages";
 import { Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import CritcsScore from "./CritcsScore";
+import { Link } from "react-router-dom";
 
 interface Props {
   game: Game;
@@ -10,10 +11,18 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card.Root overflow="hidden">
+    <Card.Root
+      _hover={{
+        transform: "scale(1.03)",
+        transition: "transform .15s ease-in",
+      }}
+      overflow="hidden"
+    >
       <Image src={cropImageUrl(game.background_image)} />
       <Card.Body gap="2">
-        <Card.Title>{game.name}</Card.Title>
+        <Card.Title>
+          <Link to={`/games/${game.slug}`}>{game.name}</Link>
+        </Card.Title>
         <Card.Description as={"div"}>
           <HStack justifyContent={"space-between"}>
             <PlatformIconList
