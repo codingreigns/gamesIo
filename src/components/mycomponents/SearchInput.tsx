@@ -1,9 +1,9 @@
-import { Kbd, Input } from "@chakra-ui/react";
-import { LuSearch } from "react-icons/lu";
-import { InputGroup } from "../ui/input-group";
-import { useRef } from "react";
 import useGameQueryStore from "@/store";
+import { Input } from "@chakra-ui/react";
+import { useRef } from "react";
+import { LuSearch } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { InputGroup } from "../ui/input-group";
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -19,12 +19,8 @@ const SearchInput = () => {
         navigate("/");
       }}
     >
-      <InputGroup
-        flex="1"
-        startElement={<LuSearch />}
-        endElement={<Kbd>⌘K</Kbd>}
-      >
-        <Input ref={ref} borderRadius={10} placeholder="Search contacts" />
+      <InputGroup flex="1" startElement={<LuSearch />}>
+        <Input ref={ref} borderRadius={10} placeholder="Search Games..." />
       </InputGroup>
     </form>
   );
