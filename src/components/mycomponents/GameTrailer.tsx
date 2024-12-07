@@ -9,8 +9,9 @@ const GameTrailer = ({ gameId }: { gameId: number }) => {
   if (error) throw error;
   const videoUri = data?.results[0]?.data[480];
   const imageUri = data?.results[0]?.preview;
+  console.log(data);
 
-  return <video src={videoUri} poster={imageUri} controls />;
+  return videoUri ? <video src={videoUri} poster={imageUri} controls /> : null;
 };
 
 export default GameTrailer;
